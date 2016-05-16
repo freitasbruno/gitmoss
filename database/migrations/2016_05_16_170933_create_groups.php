@@ -15,6 +15,7 @@ class CreateGroups extends Migration
         Schema::create('groups', function($newtable) {
 			$newtable->increments('id');
 			$newtable->integer('parent_id');
+			$newtable->integer('user_id');
 			$newtable->string('name');
 			$newtable->text('description');
 			$newtable->date('added');

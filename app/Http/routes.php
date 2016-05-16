@@ -11,6 +11,8 @@
 |
 */
 
+//use App\Models\Group;
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -28,6 +30,22 @@ Route::get('contact', function () {
 });
 
 Route::get('dbedit', function () {
+
+	
+	$group = Group::find(1);
+	$group->name = 'MyGroup Changed';
+	$group->save();
+	return $group->name;
+	
+	/*
+	$group = new Group;
+	$group->parent_id = 25;
+	$group->user_id = 12;
+	$group->name = "MyGroup";
+	$group->description = "Testing the instantiation of MyGroup";
+	$group->visible = 1;
+	$group->save();
+	*/
 	
 	/*
 	Schema::create('groups', function($newtable) {
