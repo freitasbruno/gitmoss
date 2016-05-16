@@ -26,3 +26,20 @@ Route::get('about/{subject}', function ($subject) {
 Route::get('contact', function () {
 	return view('contact');
 });
+
+Route::get('dbedit', function () {
+	
+	/*
+	Schema::create('groups', function($newtable) {
+		$newtable->increments('id');
+		$newtable->integer('parent_id');
+		$newtable->string('name');
+		$newtable->text('description');
+		$newtable->date('added');
+		$newtable->boolean('visible');
+		$newtable->timestamps();
+	});
+	*/
+	
+	return 'database edits have been done';
+});
