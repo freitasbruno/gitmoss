@@ -14,3 +14,15 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('about', function () {
+	return 'about content placeholder';
+});
+
+Route::get('about/{subject}', function ($subject) {
+	return "{$subject} content placeholder";
+});
+
+Route::get('contact', function () {
+	return view('contact');
+});
