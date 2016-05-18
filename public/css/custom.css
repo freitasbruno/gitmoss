@@ -2,8 +2,56 @@
 	border: solid 2px red;
 }
 
+html, body {
+    height: 100%;
+}
+
 body {
-  background-color: #eee;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    display: table;
+    font-weight: 100;
+    font-family: 'Slabo 27px', serif;
+}
+
+.container {
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.content {
+    text-align: center;
+    display: inline-block;
+}
+
+.title {
+	font-family: 'Lato';
+    font-size: 96px;
+}
+
+label, text, password {
+	display: block;
+}
+
+label {
+	margin-top: 10px;
+}
+
+.myBtn {
+	width: 160px;
+	margin-top: 20px;
+    padding:5px 15px; 
+    background:#ccc; 
+    border:0 none;
+    cursor:pointer;
+    -webkit-border-radius: 5px;
+    border-radius: 5px; 
+}
+
+.myBtn:hover {
+    background:#4976d0; 
 }
 
 #header {

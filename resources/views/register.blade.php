@@ -14,6 +14,21 @@
         <div class="container">
             <div class="content">
                 <div class="title">GitMoss</div>
+                <h2>Registration Form</h2>
+				<a href="{{ URL::to('login') }}">Already a User? Log in!</a>
+				{!! Form::open(array('url' => 'register')) !!}
+					{!! Form::label('name', 'Name') !!}
+					{!! Form::text('name') !!}
+					<br>
+					{!! Form::label('email', 'Email Address') !!}
+					{!! Form::text('email') !!}
+					<br>
+					{!! Form::label('password', 'Password') !!}
+					{!! Form::password('password') !!}
+					<br>
+					{!! Form::submit('Register', array('class' => 'myBtn')) !!}
+				{!! Form::close() !!}
+				
             </div>
         </div>
     </body>

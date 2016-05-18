@@ -17,6 +17,85 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('register', function () {
+	return view('register');
+});
+
+Route::post('register', function () {
+	$user = new User;
+	$user->email = Input::get('email');
+	$user->name = Input::get('name');
+	$user->password = Hash::make(Input::get('password'));
+	$user->save();
+	
+	$credentials = Input::only('email', 'password');
+	if(Auth::attempt($credentials)) {
+		$theEmail = Input::get('email');
+		return view('thanks', array('theEmail' => $theEmail));
+	}
+	return view('register');
+});
+
+Route::get('login', function () {
+	return view('login');
+});
+
+Route::post('login', function () {
+	$credentials = Input::only('email', 'password');
+	if(Auth::attempt($credentials)) {
+		return view('profile');
+	}
+	return view('login');
+});
+//Route::post('auth/login', 'Auth\AuthController@postLogin');
+
+Route::get('logout', function () {
+	Auth::logout();
+	return view('logout');
+});
+
+Route::get('profile', array(
+	'middleware' => 'auth', 
+	function () {
+		return view('profile');
+}));
+
+Route::get('todo', function () {
+	$todolist = array(
+		array(
+			'name' => 'Installation and Laravel requisites',
+			'Install LAMP' => 'complete',
+			'Install cURL' => 'complete',
+			'Install Composer with cURL' => 'complete',
+			'Install Laravel with composer' => 'complete'			
+			),
+		array(
+			'name' => 'Testing Laravel',
+			'Introduction to routes' => 'complete',
+			'Creating a new view' => 'complete'
+			),
+		array(
+			'name' => 'Using a Database',
+			'Adding a new database' => 'complete',
+			'Using migrations for table creation/deletion' => 'complete',
+			'Using Eloquent ORM' => 'complete'
+			),
+		array(
+			'name' => 'Developing the application',
+			'Working with blade templates' => 'complete',
+			'Integrating forms' => 'complete',
+			'Handling user authentication' => '',
+			'Creating and displaying user groups' => '',
+			'Github search and results display' => '',
+			'Saving repositories to the database' => '',
+			'Adding Github profiles' => '',
+			'Autoload Github profile(s) repositories' => ''			
+			)
+		);
+		
+    return view('todo', array('todolist' => $todolist));
+});
+
 Route::get('about', function () {
 	return 'about content placeholder';
 });
@@ -31,7 +110,6 @@ Route::get('contact', function () {
 
 Route::get('dbedit', function () {
 
-	
 	$group = Group::find(1);
 	$group->name = 'MyGroup Changed';
 	$group->save();
