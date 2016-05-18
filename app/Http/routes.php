@@ -55,6 +55,10 @@ Route::get('profile', array(
 		return view('profile');
 }));
 
+Route::get('search', function () {
+	return view('search');
+});
+
 Route::get('todo', function () {
 	$todolist = array(
 		array(
