@@ -15,9 +15,9 @@
         <div class="container">
             <div class="content">
                 <div class="title">GitMoss</div>
-                <a href="{{ URL::to('login') }}" class="myBtn">Login</a>
-                <a href="{{ URL::to('todo') }}" class="myBtn">Project Progress</a>
-                <a href="{{ URL::to('contact') }}" class="myBtn">Contact Page</a>
+                <a href="{{ URL::to('login') }}" class="myBtn">LOGIN</a>
+                <a href="{{ URL::to('todo') }}" class="myBtn">PROJECT PROGRESS</a>
+                <a href="{{ URL::to('contact') }}" class="myBtn">CONTACT PAGE</a>
             </div>
         </div>
     </body>

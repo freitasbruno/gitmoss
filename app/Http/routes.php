@@ -91,6 +91,14 @@ Route::get('todo', function () {
     return view('todo', array('todolist' => $todolist));
 });
 
+Route::get('tutorial', function () {
+	return view('tutorial');
+});
+
+Route::get('contact', function () {
+	return view('contact');
+});
+
 Route::get('about', function () {
 	return 'about content placeholder';
 });
@@ -99,22 +107,18 @@ Route::get('about/{subject}', function ($subject) {
 	return "{$subject} content placeholder";
 });
 
-Route::get('contact', function () {
-	return view('contact');
-});
-
 Route::get('dbedit', function () {
-
+	/*
 	$group = Group::find(1);
 	$group->name = 'MyGroup Changed';
 	$group->save();
 	return $group->name;
-	
+	*/
 	/*
 	$group = new Group;
-	$group->parent_id = 25;
-	$group->user_id = 12;
-	$group->name = "MyGroup";
+	$group->parent_id = 12;
+	$group->user_id = 1;
+	$group->name = "MyGroup3";
 	$group->description = "Testing the instantiation of MyGroup";
 	$group->visible = 1;
 	$group->save();

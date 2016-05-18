@@ -1,6 +1,7 @@
 <?php
 
 	$user = Auth::user();
+	$groups = Group::where('user_id', $user->id)->get();
 ?>
 
 <!DOCTYPE html>
@@ -24,7 +25,10 @@
                 <h2>Welcome back {{ $user->name }}</h2>
                 <a href="{{ URL::to('logout') }}" class="myBtn">Logout</a>
                 
+                <h2>User Data</h2>
+                <p>{{ $user }}</p>
                 <h2>My Github Projects</h2>
+                <p>{{ $groups }}</p>
             </div>
         </div>
     </body>

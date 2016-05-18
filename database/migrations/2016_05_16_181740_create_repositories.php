@@ -17,6 +17,7 @@ class CreateRepositories extends Migration
 			$newtable->integer('user_id');
 			$newtable->string('name');
 			$newtable->string('url');
+			$newtable->string('icon');
 			$newtable->text('description');
 			$newtable->date('added');
 			$newtable->boolean('visible');
