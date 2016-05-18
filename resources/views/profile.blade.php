@@ -23,6 +23,8 @@
                 <a href="{{ URL::to('/') }}"><div class="title">GitMoss</div></a>
                 <h2>Welcome back {{ $user->name }}</h2>
                 <a href="{{ URL::to('logout') }}" class="myBtn">Logout</a>
+                
+                <h2>My Github Projects</h2>
             </div>
         </div>
     </body>

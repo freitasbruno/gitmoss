@@ -28,7 +28,6 @@
 					<br>
 					{!! Form::submit('Login', array('class' => 'formBtn')) !!}
 				{!! Form::close() !!}
-				
             </div>
         </div>
     </body>

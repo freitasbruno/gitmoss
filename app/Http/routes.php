@@ -28,12 +28,8 @@ Route::post('register', function () {
 	$user->password = Hash::make(Input::get('password'));
 	$user->save();
 	
-	$credentials = Input::only('email', 'password');
-	if(Auth::attempt($credentials)) {
-		$theEmail = Input::get('email');
-		return view('thanks', array('theEmail' => $theEmail));
-	}
-	return view('register');
+	$theEmail = Input::get('email');
+	return view('thanks', array('theEmail' => $theEmail));
 });
 
 Route::get('login', function () {
@@ -83,7 +79,7 @@ Route::get('todo', function () {
 			'name' => 'Developing the application',
 			'Working with blade templates' => 'complete',
 			'Integrating forms' => 'complete',
-			'Handling user authentication' => '',
+			'Handling user authentication' => 'complete',
 			'Creating and displaying user groups' => '',
 			'Github search and results display' => '',
 			'Saving repositories to the database' => '',

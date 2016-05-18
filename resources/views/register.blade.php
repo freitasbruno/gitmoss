@@ -30,7 +30,6 @@
 					<br>
 					{!! Form::submit('Register', array('class' => 'formBtn')) !!}
 				{!! Form::close() !!}
-				
             </div>
         </div>
     </body>
