@@ -39,9 +39,12 @@ label {
 	margin-top: 10px;
 }
 
-.myBtn {
+.myBtn, .formBtn{
+	display: block;
 	width: 160px;
 	margin-top: 20px;
+	margin-left:auto;
+	margin-right:auto;
     padding:5px 15px; 
     background:#ccc; 
     border:0 none;
@@ -50,8 +53,24 @@ label {
     border-radius: 5px; 
 }
 
-.myBtn:hover {
-    background:#4976d0; 
+.formBtn {
+	width: 100px;
+    background:none; 
+    border:1px solid #4976d0;
+}
+
+.myBtn:hover, .formBtn:hover {
+    background:#4976d0;
+    color: #eee;
+}
+
+a {
+	text-decoration: none;
+	color: #333;
+}
+
+.todolist {
+	text-align: left;
 }
 
 #header {

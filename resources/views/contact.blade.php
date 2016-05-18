@@ -1,20 +1,21 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Laravel</title>
+        <title>GitMoss</title>
 
-
+		<!-- General CSS -->
         <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
         
-        <!-- Custom CSS and JS -->
+        <!-- Custom CSS -->
 		<link rel="stylesheet" href="{{ asset('css/custom.css') }}" type="text/css">
+		<link href='https://fonts.googleapis.com/css?family=Slabo+27px' rel='stylesheet' type='text/css'>		
+		<!-- JS Files -->
 		<script type="text/javascript" src="{{ asset('js/custom.js') }}"></script>
-		
     </head>
     <body>
         <div class="container">
             <div class="content">
-                <div class="title">Contact Page</div>
+                <a href="{{ URL::to('/') }}"><div class="title">GitMoss</div></a>
                 <h3 class="highlight">Contact information area</h3>
             </div>
         </div>

@@ -1,21 +1,23 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Laravel</title>
+        <title>GitMoss</title>
 
+		<!-- General CSS -->
         <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
-		<link href='https://fonts.googleapis.com/css?family=Slabo+27px' rel='stylesheet' type='text/css'>
-		
-		<!-- Custom CSS -->
+        
+        <!-- Custom CSS -->
 		<link rel="stylesheet" href="{{ asset('css/custom.css') }}" type="text/css">
-		
+		<link href='https://fonts.googleapis.com/css?family=Slabo+27px' rel='stylesheet' type='text/css'>		
+		<!-- JS Files -->
+		<script type="text/javascript" src="{{ asset('js/custom.js') }}"></script>
     </head>
     <body>
         <div class="container">
             <div class="content">
-                <div class="title">GitMoss</div>
+                <a href="{{ URL::to('/') }}"><div class="title">GitMoss</div></a>
+                <a href="{{ URL::to('register') }}" class="myBtn">I'm a new user!</a>
                 <h2>Login Form</h2>
-				<a href="{{ URL::to('register') }}">I'm a new user!</a>
 				{!! Form::open(array('url' => 'login')) !!}
 					{!! csrf_field() !!}
 					{!! Form::label('email', 'Email Address') !!}
@@ -24,7 +26,7 @@
 					{!! Form::label('password', 'Password') !!}
 					{!! Form::password('password') !!}
 					<br>
-					{!! Form::submit('Login', array('class' => 'myBtn')) !!}
+					{!! Form::submit('Login', array('class' => 'formBtn')) !!}
 				{!! Form::close() !!}
 				
             </div>

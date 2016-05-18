@@ -43,11 +43,10 @@ Route::get('login', function () {
 Route::post('login', function () {
 	$credentials = Input::only('email', 'password');
 	if(Auth::attempt($credentials)) {
-		return view('profile');
+		return Redirect::to('profile');
 	}
 	return view('login');
 });
-//Route::post('auth/login', 'Auth\AuthController@postLogin');
 
 Route::get('logout', function () {
 	Auth::logout();
