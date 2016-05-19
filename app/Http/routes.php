@@ -39,6 +39,10 @@ Route::get('login', function () {
 Route::post('login', function () {
 	$credentials = Input::only('email', 'password');
 	if(Auth::attempt($credentials)) {
+		$user = Auth::user();
+		$current_group = 0;
+		session()->put('user_id', $user->id);
+		session()->put('current_group', $current_group);
 		return Redirect::to('profile');
 	}
 	return view('login');
@@ -54,6 +58,19 @@ Route::get('profile', array(
 	function () {
 		return view('profile');
 }));
+
+Route::post('profile', function () {
+	$group = new Group;
+	$group->parent_id = session()->get('current_group');
+	$group->user_id = session()->get('user_id');
+	$group->name = Input::get('name');
+	$group->description = "Testing the creation of Groups";
+	$group->visible = 1;
+	$group->save();
+	
+	$theEmail = Input::get('email');
+	return view('profile');
+});
 
 Route::get('search', function () {
 	return view('search');
@@ -84,7 +101,7 @@ Route::get('todo', function () {
 			'Working with blade templates' => 'complete',
 			'Integrating forms' => 'complete',
 			'Handling user authentication' => 'complete',
-			'Creating and displaying user groups' => '',
+			'Creating and displaying user groups' => 'complete',
 			'Github search and results display' => '',
 			'Saving repositories to the database' => '',
 			'Adding Github profiles' => '',
@@ -112,6 +129,7 @@ Route::get('about/{subject}', function ($subject) {
 });
 
 Route::get('dbedit', function () {
+	
 	/*
 	$group = Group::find(1);
 	$group->name = 'MyGroup Changed';
@@ -120,14 +138,13 @@ Route::get('dbedit', function () {
 	*/
 	/*
 	$group = new Group;
-	$group->parent_id = 12;
+	$group->parent_id = 35;
 	$group->user_id = 1;
-	$group->name = "MyGroup3";
-	$group->description = "Testing the instantiation of MyGroup";
+	$group->name = "AbcMyGroup";
+	$group->description = "Testing the order display of Groups";
 	$group->visible = 1;
 	$group->save();
 	*/
-	
 	/*
 	Schema::create('groups', function($newtable) {
 		$newtable->increments('id');
