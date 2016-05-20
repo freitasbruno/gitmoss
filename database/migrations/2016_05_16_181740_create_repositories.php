@@ -15,11 +15,11 @@ class CreateRepositories extends Migration
         Schema::create('repositories', function($newtable) {
 			$newtable->increments('id');
 			$newtable->integer('user_id');
+			$newtable->integer('group_id');
 			$newtable->string('name');
 			$newtable->string('url');
 			$newtable->string('icon');
 			$newtable->text('description');
-			$newtable->date('added');
 			$newtable->boolean('visible');
 			$newtable->timestamps();
 		});

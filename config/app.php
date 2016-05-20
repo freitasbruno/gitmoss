@@ -208,6 +208,7 @@ return [
 		'Html' => Collective\Html\HtmlFacade::class,
 		'Input' => Illuminate\Support\Facades\Input::class,
         'Group' => App\Models\Group::class,
+        'Repository' => App\Models\Repository::class,
         'User' => App\Models\User::class,
 
     ],

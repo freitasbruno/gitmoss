@@ -63,7 +63,7 @@ Route::post('new_group', function () {
 	$group = new Group;
 	$group->parent_id = session()->get('current_group');
 	$group->user_id = session()->get('user_id');
-	$group->name = 
+	$group->name = Input::get('name');
 	$group->visible = 1;
 	$group->save();
 	
@@ -71,9 +71,36 @@ Route::post('new_group', function () {
 	return Redirect::to('profile');
 });
 
+Route::post('new_repository', function () {
+	$repository = new Repository;
+	$repository->group_id = session()->get('current_group');
+	$repository->user_id = session()->get('user_id');
+	$repository->name = Input::get('name');
+	$repository->url = Input::get('url');
+	$repository->icon = Input::get('icon');
+	$repository->visible = 1;
+	$repository->save();
+	
+	return Redirect::to('profile');
+});
+
 Route::get('profile/{group_id}', function ($group_id) {
 	session()->set('current_group', $group_id);
 	return Redirect::to('profile');
+});
+
+Route::get('delete_group/{group_id}', function ($group_id) {
+	Group::destroy($group_id);
+	return Redirect::to('profile');
+});
+
+Route::get('delete_repository/{repository_id}', function ($repository_id) {
+	Repository::destroy($repository_id);
+	return Redirect::to('profile');
+});
+
+Route::get('repository/{repository_id}', function ($repository_id) {
+	return view('repository')->with('repository_id', $repository_id);
 });
 
 Route::get('search', function () {
@@ -106,7 +133,9 @@ Route::get('todo', function () {
 			'Integrating forms' => 'complete',
 			'Handling user authentication' => 'complete',
 			'Creating and displaying user groups' => 'complete',
-			'Github search and results display' => '',
+			'Navigating user groups' => 'complete',
+			'Creating and displaying saved repositories' => 'complete',
+			'Github search and results display' => 'complete',
 			'Saving repositories to the database' => '',
 			'Adding Github profiles' => '',
 			'Autoload Github profile(s) repositories' => ''			
@@ -134,6 +163,19 @@ Route::get('about/{subject}', function ($subject) {
 
 Route::get('dbedit', function () {
 
+	/*
+	for($i = 1; $i <= 8; $i++){
+		$repo = new Repository;
+		$repo->user_id = 1;
+		$repo->group_id = 1;
+		$repo->name = "Repository". $i;
+		$repo->url = "";
+		$repo->icon = "https://cdn4.iconfinder.com/data/icons/logos-3/256/laravel-128.png";
+		$repo->description = "Testing Repositories";
+		$repo->visible = 1;
+		$repo->save();
+	}
+	*/
 	/*
 	for($i = 1; $i <= 3; $i++){
 		for($n = 1; $n <= 5; $n++){

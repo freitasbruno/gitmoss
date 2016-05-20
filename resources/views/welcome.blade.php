@@ -15,7 +15,11 @@
         <div class="container">
             <div class="content">
                 <div class="title">GitMoss</div>
-                <a href="{{ URL::to('login') }}" class="myBtn">LOGIN</a>
+                @if(Auth::check())
+                	<a href="{{ URL::to('profile') }}" class="myBtn">MY PROFILE</a>
+                @else
+                	<a href="{{ URL::to('login') }}" class="myBtn">LOGIN</a>
+                @endif
                 <a href="{{ URL::to('todo') }}" class="myBtn">PROJECT PROGRESS</a>
                 <a href="{{ URL::to('contact') }}" class="myBtn">CONTACT PAGE</a>
             </div>
