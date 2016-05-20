@@ -17,8 +17,6 @@ class CreateGroups extends Migration
 			$newtable->integer('parent_id');
 			$newtable->integer('user_id');
 			$newtable->string('name');
-			$newtable->text('description');
-			$newtable->date('added');
 			$newtable->boolean('visible');
 			$newtable->timestamps();
 		});

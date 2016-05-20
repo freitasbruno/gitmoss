@@ -1,7 +1,15 @@
 <?php
 	$user = Auth::user();
-	$groups = Group::where('user_id', $user->id)->orderBy('name')->get();
-	$currentGroup = session()->get('currentGroup');;
+	$current_group_id = session()->get('current_group');
+	
+	if($current_group_id != 0){
+		$current_group = Group::find($current_group_id);
+	}else{
+		$current_group = null;
+	}
+	
+	$group_matches = array('user_id' => $user->id, 'parent_id' => $current_group_id);
+	$groups = Group::where($group_matches)->orderBy('name')->get();
 ?>
 
 <!DOCTYPE html>
@@ -24,34 +32,48 @@
             <div class="content">
                 <a href="{{ URL::to('/') }}"><div class="title">GitMoss</div></a>
                 <h2>Welcome back {{ $user->name }}</h2>
+                <p>Your user ID is {{ session()->get('user_id') }}</p>
+                <p>Current group is {{ session()->get('current_group') }}</p>
                 <a href="{{ URL::to('logout') }}" class="myBtn">LOGOUT</a>
             </div>
             <div class="row">
-            	<p>Your user ID is {{ session()->get('user_id') }}</p>
-            	<h2>My Groups</h2>
+            	
+            	@if($current_group_id == 0)
+	            	<h2>My Groups</h2>
+	            @else
+	            	<h2>
+	            		<a href="{{ URL::to('profile/' . $current_group->parent_id) }}">
+	            			<span class="glyphicon glyphicon-menu-left small" aria-hidden="true"></span>
+	            		</a>
+	            		&ensp;{{ $current_group->name }}
+	            	</h2>
+	            @endif
+	            
             	@foreach($groups as $group)
 					<div class="col-md-4">
-						<div class="groupBtn">{{ $group->name }}</div>
+						<a href="{{ URL::to('profile/' . $group->id) }}">
+							<div class="groupBtn">{{ $group->name }}</div>
+						</a>
 					</div>
 				@endforeach
+				
 				<div class="col-md-4">
 					<div class="groupBtn" >
-					{!! Form::open(array('url' => 'profile')) !!}
+					{!! Form::open(array('url' => 'new_group')) !!}
 						{!! csrf_field() !!}
 						{!! Form::text('name', '', array('placeholder'=>'NEW GROUP')) !!}
 						{!! Form::submit('+') !!}
-					{!! Form::close() !!}
 					</div>
 				</div>
+				{!! Form::close() !!}
 			</div>
 			
-			@if($currentGroup)
+			@unless($current_group_id == 0)
                 <div class="row">
-                	
-                	<h2>{{ $currentGroup->name }}'s Repositories </h2>
+                	<h2>{{ $current_group->name }}'s Repositories </h2>
                 	<div class="col-md-3">Repository</div>
                 </div>
-       		@endif
+       		@endunless
         </div>
         
         <!-- jQuery -->

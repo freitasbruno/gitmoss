@@ -30,3 +30,8 @@ $('#search').keyup(function() {
     }
   }, 500 );
 });
+
+function myFunction(group_id) {
+	$('#selectGroupForm').append('<input type="hidden" name="selectedGroup " value="' + $(group_id) + '" />');
+    $('#selectGroupForm').submit();
+}

@@ -59,17 +59,21 @@ Route::get('profile', array(
 		return view('profile');
 }));
 
-Route::post('profile', function () {
+Route::post('new_group', function () {
 	$group = new Group;
 	$group->parent_id = session()->get('current_group');
 	$group->user_id = session()->get('user_id');
-	$group->name = Input::get('name');
-	$group->description = "Testing the creation of Groups";
+	$group->name = 
 	$group->visible = 1;
 	$group->save();
 	
 	$theEmail = Input::get('email');
-	return view('profile');
+	return Redirect::to('profile');
+});
+
+Route::get('profile/{group_id}', function ($group_id) {
+	session()->set('current_group', $group_id);
+	return Redirect::to('profile');
 });
 
 Route::get('search', function () {
@@ -129,23 +133,26 @@ Route::get('about/{subject}', function ($subject) {
 });
 
 Route::get('dbedit', function () {
+
+	/*
+	for($i = 1; $i <= 3; $i++){
+		for($n = 1; $n <= 5; $n++){
+			$group = new Group;
+			$group->parent_id = $i;
+			$group->user_id = $i;
+			$group->name = "Group" + (string)($i*$n);
+			$group->visible = 1;
+			$group->save();
+		}
+	}
+	*/
 	
 	/*
 	$group = Group::find(1);
 	$group->name = 'MyGroup Changed';
 	$group->save();
 	return $group->name;
-	*/
-	/*
-	$group = new Group;
-	$group->parent_id = 35;
-	$group->user_id = 1;
-	$group->name = "AbcMyGroup";
-	$group->description = "Testing the order display of Groups";
-	$group->visible = 1;
-	$group->save();
-	*/
-	/*
+
 	Schema::create('groups', function($newtable) {
 		$newtable->increments('id');
 		$newtable->integer('parent_id');
